@@ -1,7 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Cookie from 'js-cookie'
+import { useEffect } from 'react'
 
 export default function Home() {
+
+  useEffect(() =>{ 
+    const auth = Cookie.get('auth');
+  }, [])
+
   return (
     <div className="container mx-auto">
       <Head>
