@@ -6,15 +6,9 @@ import awsExports from '../src/aws-exports'
 
 const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
 
-Amplify.configure({
-  ...awsExports,
-  cookieStorage: {
-    domain: 'localhost',
-    secure: false,
-    path: '/',
-    expires: 365,
-  },
-})
+
+// TODO build components like DS, but dont style them too much, instead, lets hire a designer :D
+
 
 export default function Home() {
   const [email, setEmail] = useState('')
@@ -40,10 +34,12 @@ export default function Home() {
   }, [email, password])
 
   const onSignIn = useCallback(async () => {
-    await Auth.signIn({
+    console.log('idemooo');
+    const x = await Auth.signIn({
       username: email,
       password
     })
+    console.log('123123', x)
   }, [email, password])
 
   const onConfirm = useCallback(async () => {
