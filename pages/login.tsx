@@ -6,6 +6,8 @@ import awsExports from '../src/aws-exports'
 import { useForm } from 'react-hook-form'
 import TextInput from '../ds/TextInput'
 import Button from '../ds/Button'
+import PublicPage from '../src/components/PublicPage'
+import clsx from 'clsx'
 
 export default function Home() {
   const {handleSubmit, register} = useForm();
@@ -20,12 +22,16 @@ export default function Home() {
 
   // TODO add meta
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSignIn)}>
-        <TextInput {...register("email", {required: true})} />
-        <TextInput {...register("password", {required: true})}  type="password" />
-        <Button>Clickme</Button>
+    <PublicPage title="Login" >
+      <form className={clsx(
+        'flex flex-col p-8 bg-gray-700 rounded-lg shadow-lg m-4',
+        'mt-auto mx-4 mb-8',
+        'sm:m-auto sm:w-96'
+      )} onSubmit={handleSubmit(onSignIn)}>
+        <TextInput className="mt-4" label="EMAIL" {...register("email", {required: true})} />
+        <TextInput className="mt-4" label="PASSWORD" {...register("password", {required: true})}  type="password" />
+        <Button className="mt-10" isLoading={false}>SIGN IN</Button>
       </form>
-    </div>
+    </PublicPage>
   )
 }
