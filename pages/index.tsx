@@ -33,15 +33,6 @@ export default function Home() {
     setToConfirm(true);
   }, [email, password])
 
-  const onSignIn = useCallback(async () => {
-    console.log('idemooo');
-    const x = await Auth.signIn({
-      username: email,
-      password
-    })
-    console.log('123123', x)
-  }, [email, password])
-
   const onConfirm = useCallback(async () => {
     await Auth.confirmSignUp(email, code)
   }, [email, code])
