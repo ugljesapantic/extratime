@@ -7,6 +7,7 @@ import TextInput from '../ds/TextInput'
 import PublicPage from '../src/components/PublicPage'
 import Form from '../src/components/Form'
 import { useRouter } from 'next/router'
+import { moveToCode } from '../src/utils/auth'
 
 export default function Register() {
   const r = useRouter();
@@ -17,7 +18,7 @@ export default function Register() {
         username: email,
         password
       })
-      r.push({pathname: 'confirm', query: { email }})
+      moveToCode(r, email, password)
     } catch (e: any) {
       if (['UsernameExistsException'].includes(e.code)) methods.setError('email', {message: e.message});
       else if (['InvalidPasswordException'].includes(e.code)) methods.setError('password', {message: e.message});

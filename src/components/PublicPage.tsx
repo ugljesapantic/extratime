@@ -1,12 +1,29 @@
+import { Hub } from '@aws-amplify/core';
 import Head from 'next/head'
 import Link from 'next/link';
-import React from 'react'
+import React, { useEffect } from 'react'
 
 type Props = {
   title: string;
 }
 
+const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
+
 const PublicPage: React.FC<Props> = ({children, title}) => {
+  
+  useEffect(() =>{ 
+    Hub.listen('auth', (data) => {
+      switch(data.payload.event) {
+        case 'signIn':
+          console.log(data, 'sizzz');
+          break;
+        case 'signOut':
+          console.log(data, 'sozzz');
+          break;
+      }
+    })
+  }, [])
+
   return (
     <div className="h-screen w-screen bg-gradient-to-b from-blue-900 via-indigo-900 to-purple-900 text-gray-300">
       <Head>

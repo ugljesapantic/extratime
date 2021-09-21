@@ -7,6 +7,7 @@ import TextInput from '../ds/TextInput'
 import PublicPage from '../src/components/PublicPage'
 import Form from '../src/components/Form'
 import { useRouter } from 'next/router'
+import { moveToCode } from '../src/utils/auth'
 
 export default function Login() {
   const r = useRouter();
@@ -18,7 +19,7 @@ export default function Login() {
         password
       })
     } catch (e: any) {
-      if (e.code === 'UserNotConfirmedException') r.push({pathname: 'confirm', query: {email}})
+      if (e.code === 'UserNotConfirmedException') moveToCode(r, email, password);
     }
   }, [])
 
