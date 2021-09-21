@@ -6,8 +6,10 @@ import { FieldValues, UseFormReturn } from 'react-hook-form'
 import TextInput from '../ds/TextInput'
 import PublicPage from '../src/components/PublicPage'
 import Form from '../src/components/Form'
+import { useRouter } from 'next/router'
 
 export default function Login() {
+  const r = useRouter();
 
   const onSignIn = useCallback(async ({email, password}, _ , methods: UseFormReturn<FieldValues, object>) => {
     try {
@@ -16,9 +18,7 @@ export default function Login() {
         password
       })
     } catch (e: any) {
-      if (e.code === 'UserNotConfirmedException') {
-        // TODO Move to code page
-      }
+      if (e.code === 'UserNotConfirmedException') r.push({pathname: 'confirm', query: {email}})
     }
   }, [])
 

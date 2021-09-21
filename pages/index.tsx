@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useCallback, useEffect, useState } from 'react'
 import Amplify, { Auth } from 'aws-amplify'
 import awsExports from '../src/aws-exports'
+import PublicPage from '../src/components/PublicPage'
 
 const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
 
@@ -38,37 +39,8 @@ export default function Home() {
   }, [email, code])
 
   return (
-    <div className="container mx-auto">
-      <Head>
-        <title>Extratime</title>
-        <meta name="description" content="Extra time app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="p-8">
-        <div className="m-auto flex flex-col w-60 content-center">
-          {toConfirm ? 
-            <>
-              <label htmlFor="code">Code</label>
-              <input value={code} onChange={e => setCode(e.target.value)} className="border border-1" type="text" />
-              <button onClick={onConfirm} >Confirm</button>
-            </> 
-            : 
-            <>
-              <label htmlFor="email">Email</label>
-              <input value={email} onChange={e => setEmail(e.target.value)} className="border border-1" type="email"  />
-              <label htmlFor="password">Password</label>
-              <input value={password} onChange={e => setPassword(e.target.value)} className="border border-1" type="password" />
-              <div className="flex justify-between">
-                <button onClick={onSignUp}>SignUp</button>
-                <button onClick={onSignIn}>SignIn</button>
-              </div>
-            </>
-          }
-        </div>
-      </main>
-      <footer>
-        Ugljesa corp!
-      </footer>
-    </div>
+    <PublicPage title="ExtraTime" >
+      <div className="text-4xl m-auto">Welcome to ExtraTime!</div>
+    </PublicPage>
   )
 }

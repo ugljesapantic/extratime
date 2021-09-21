@@ -6,8 +6,10 @@ import { FieldValues, UseFormReturn } from 'react-hook-form'
 import TextInput from '../ds/TextInput'
 import PublicPage from '../src/components/PublicPage'
 import Form from '../src/components/Form'
+import { useRouter } from 'next/router'
 
 export default function Register() {
+  const r = useRouter();
 
   const onSignUp = useCallback(async ({email, password}, _ , methods: UseFormReturn<FieldValues, object>) => {
     try {
@@ -15,6 +17,7 @@ export default function Register() {
         username: email,
         password
       })
+      r.push({pathname: 'confirm', query: { email }})
     } catch (e: any) {
       if (['UsernameExistsException'].includes(e.code)) methods.setError('email', {message: e.message});
       else if (['InvalidPasswordException'].includes(e.code)) methods.setError('password', {message: e.message});
