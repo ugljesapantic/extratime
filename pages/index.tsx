@@ -1,5 +1,3 @@
-import { useCallback, useEffect, useState } from 'react'
-import Amplify, { Auth } from 'aws-amplify'
 import PublicPage from '../src/components/PublicPage'
 
 export default function Home() {

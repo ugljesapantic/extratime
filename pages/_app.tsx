@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app'
 import awsExports from '../src/aws-exports'
 
 import Amplify from 'aws-amplify'
+import { AuthContext } from '../src/utils/auth'
 
 Amplify.configure({
   ...awsExports,
@@ -17,6 +18,8 @@ Amplify.configure({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return <AuthContext>
+    <Component {...pageProps} />
+  </AuthContext>
 }
 export default MyApp

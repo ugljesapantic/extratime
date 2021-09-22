@@ -2,6 +2,7 @@ import { Hub } from '@aws-amplify/core';
 import Head from 'next/head'
 import Link from 'next/link';
 import React, { useEffect } from 'react'
+import { AuthContext, Redirect, useAuth } from '../utils/auth';
 
 type Props = {
   title: string;
@@ -10,20 +11,11 @@ type Props = {
 const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
 
 const PublicPage: React.FC<Props> = ({children, title}) => {
-  
-  useEffect(() =>{ 
-    Hub.listen('auth', (data) => {
-      switch(data.payload.event) {
-        case 'signIn':
-          console.log(data, 'sizzz');
-          break;
-        case 'signOut':
-          console.log(data, 'sozzz');
-          break;
-      }
-    })
-  }, [])
 
+  const auth = useAuth();
+
+  if (auth) return <Redirect path="/dashboard" />
+  
   return (
     <div className="h-screen w-screen bg-gradient-to-b from-blue-900 via-indigo-900 to-purple-900 text-gray-300">
       <Head>
