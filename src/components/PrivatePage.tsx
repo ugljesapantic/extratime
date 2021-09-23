@@ -7,6 +7,8 @@ type Props = {
   title: string;
 }
 
+
+
 const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
 
 const PrivatePage: React.FC<Props> = ({children, title}) => {
