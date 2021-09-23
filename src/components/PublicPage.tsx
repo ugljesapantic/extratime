@@ -1,8 +1,7 @@
-import { Hub } from '@aws-amplify/core';
 import Head from 'next/head'
 import Link from 'next/link';
-import React, { useEffect } from 'react'
-import { AuthContext, Redirect, useAuth } from '../utils/auth';
+import React from 'react'
+import { Redirect, useAuth } from '../utils/auth';
 
 type Props = {
   title: string;

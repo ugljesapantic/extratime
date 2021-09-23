@@ -1,6 +1,10 @@
+import PrivatePage from "../src/components/PrivatePage";
+
 export default function Dashboard() {
 
   return (
-    <div>Welcome</div>
+    <PrivatePage title="Dashboard">
+      <div>Dashboard</div>
+    </PrivatePage>
   )
 }

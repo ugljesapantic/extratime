@@ -21,11 +21,16 @@ const Context = createContext<CognitoUser | undefined>(undefined);
 export const useAuth = () => useContext(Context);
 
 export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}) => {
-  const [auth, setAuth] = useState<CognitoUser | undefined>();
+  // When null, its loading
+  const [auth, setAuth] = useState<CognitoUser | undefined | null>(null);
 
   const loadIt = useCallback(async () => {
-    const user = await Auth.currentAuthenticatedUser();
-    setAuth(user);
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      setAuth(user);
+    } catch (e) {
+      setAuth(undefined);
+    }
   }, [])
 
   useEffect(() => { 
@@ -41,6 +46,9 @@ export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}
       }
     })
   }, [loadIt])
+
+  // return loading screen
+  if (auth === null) return null;
 
   return <Context.Provider value={auth}>
     {children}
