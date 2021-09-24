@@ -7,15 +7,7 @@ import awsExports from '../src/aws-exports'
 import Amplify from 'aws-amplify'
 import { AuthContext } from '../src/utils/auth'
 
-Amplify.configure({
-  ...awsExports,
-  cookieStorage: {
-    domain: 'localhost',
-    secure: false,
-    path: '/',
-    expires: 365,
-  },
-})
+Amplify.configure(awsExports)
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <AuthContext>
