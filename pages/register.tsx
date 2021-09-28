@@ -16,7 +16,10 @@ export default function Register() {
     try {
       await Auth.signUp({
         username: email,
-        password
+        password,
+        attributes: {
+          email
+        }
       })
       moveToCode(r, email, password)
     } catch (e: any) {
