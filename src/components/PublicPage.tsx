@@ -7,8 +7,6 @@ type Props = {
   title: string;
 }
 
-const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
-
 const PublicPage: React.FC<Props> = ({children, title}) => {
 
   const auth = useAuth();

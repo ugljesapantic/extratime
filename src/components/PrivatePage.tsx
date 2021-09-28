@@ -1,17 +1,18 @@
+import Auth from '@aws-amplify/auth';
 import Head from 'next/head'
 import Link from 'next/link';
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Redirect, useAuth } from '../utils/auth';
 
 type Props = {
   title: string;
 }
 
-const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
-
 const PrivatePage: React.FC<Props> = ({children, title}) => {
 
   const auth = useAuth();
+
+  const logout = useCallback(() => Auth.signOut(), [])
 
   if (!auth) return <Redirect path="/" />
   
@@ -26,6 +27,7 @@ const PrivatePage: React.FC<Props> = ({children, title}) => {
         <div className="bg-gradient-to-b from-gray-700 top-gray-800 h-32">
           <header className="flex h-20 items-center space-x-3 container mx-auto ">
             <span className="text-lg font-medium mr-auto"><Link href="/dashboard">Dashboard</Link></span>
+            <span onClick={logout}>Logout</span>
           </header>
         </div>
         <main className="container mx-auto flex flex-col flex-1 -mt-4">

@@ -5,6 +5,8 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 
 const PASSWORD_KEY = 'auth_password';
 
+const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
+
 export const moveToCode = (router: NextRouter, email: string, password: string) => {
   router.push({pathname: 'confirm', query: { email }})
   sessionStorage.setItem(PASSWORD_KEY, password);
@@ -27,9 +29,11 @@ export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}
   const loadIt = useCallback(async () => {
     try {
       const user = await Auth.currentAuthenticatedUser();
+      chrome.runtime.sendMessage(extensionId, user) 
       setAuth(user);
     } catch (e) {
       setAuth(undefined);
+      chrome.runtime.sendMessage(extensionId, undefined) 
     }
   }, [])
 
@@ -38,10 +42,13 @@ export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}
     Hub.listen('auth', (data) => {
       switch(data.payload.event) {
         case 'signIn':
+          // Send data to extension
+          chrome.runtime.sendMessage(extensionId, data.payload.data) 
           setAuth(data.payload.data);
           break;
         case 'signOut':
           setAuth(undefined);
+          chrome.runtime.sendMessage(extensionId, undefined) 
           break;
       }
     })
