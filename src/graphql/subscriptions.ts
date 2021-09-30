@@ -2,12 +2,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
+export const onCreateWebsiteVisit = /* GraphQL */ `
+  subscription OnCreateWebsiteVisit {
+    onCreateWebsiteVisit {
       id
-      name
-      description
+      url
+      start
+      end
       _version
       _deleted
       _lastChangedAt
@@ -16,12 +17,13 @@ export const onCreateTodo = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
+export const onUpdateWebsiteVisit = /* GraphQL */ `
+  subscription OnUpdateWebsiteVisit {
+    onUpdateWebsiteVisit {
       id
-      name
-      description
+      url
+      start
+      end
       _version
       _deleted
       _lastChangedAt
@@ -30,12 +32,13 @@ export const onUpdateTodo = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
+export const onDeleteWebsiteVisit = /* GraphQL */ `
+  subscription OnDeleteWebsiteVisit {
+    onDeleteWebsiteVisit {
       id
-      name
-      description
+      url
+      start
+      end
       _version
       _deleted
       _lastChangedAt

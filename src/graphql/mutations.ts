@@ -2,15 +2,16 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createWebsiteVisit = /* GraphQL */ `
+  mutation CreateWebsiteVisit(
+    $input: CreateWebsiteVisitInput!
+    $condition: ModelWebsiteVisitConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createWebsiteVisit(input: $input, condition: $condition) {
       id
-      name
-      description
+      url
+      start
+      end
       _version
       _deleted
       _lastChangedAt
@@ -19,15 +20,16 @@ export const createTodo = /* GraphQL */ `
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateWebsiteVisit = /* GraphQL */ `
+  mutation UpdateWebsiteVisit(
+    $input: UpdateWebsiteVisitInput!
+    $condition: ModelWebsiteVisitConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateWebsiteVisit(input: $input, condition: $condition) {
       id
-      name
-      description
+      url
+      start
+      end
       _version
       _deleted
       _lastChangedAt
@@ -36,15 +38,16 @@ export const updateTodo = /* GraphQL */ `
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteWebsiteVisit = /* GraphQL */ `
+  mutation DeleteWebsiteVisit(
+    $input: DeleteWebsiteVisitInput!
+    $condition: ModelWebsiteVisitConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteWebsiteVisit(input: $input, condition: $condition) {
       id
-      name
-      description
+      url
+      start
+      end
       _version
       _deleted
       _lastChangedAt

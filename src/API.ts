@@ -2,19 +2,21 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTodoInput = {
+export type CreateWebsiteVisitInput = {
   id?: string | null,
-  name: string,
-  description?: string | null,
+  url: string,
+  start: number,
+  end: number,
   _version?: number | null,
 };
 
-export type ModelTodoConditionInput = {
-  name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  and?: Array< ModelTodoConditionInput | null > | null,
-  or?: Array< ModelTodoConditionInput | null > | null,
-  not?: ModelTodoConditionInput | null,
+export type ModelWebsiteVisitConditionInput = {
+  url?: ModelStringInput | null,
+  start?: ModelIntInput | null,
+  end?: ModelIntInput | null,
+  and?: Array< ModelWebsiteVisitConditionInput | null > | null,
+  or?: Array< ModelWebsiteVisitConditionInput | null > | null,
+  not?: ModelWebsiteVisitConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -57,11 +59,24 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type Todo = {
-  __typename: "Todo",
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type WebsiteVisit = {
+  __typename: "WebsiteVisit",
   id: string,
-  name: string,
-  description?: string | null,
+  url: string,
+  start: number,
+  end: number,
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
@@ -69,25 +84,27 @@ export type Todo = {
   updatedAt: string,
 };
 
-export type UpdateTodoInput = {
+export type UpdateWebsiteVisitInput = {
   id: string,
-  name?: string | null,
-  description?: string | null,
+  url?: string | null,
+  start?: number | null,
+  end?: number | null,
   _version?: number | null,
 };
 
-export type DeleteTodoInput = {
+export type DeleteWebsiteVisitInput = {
   id: string,
   _version?: number | null,
 };
 
-export type ModelTodoFilterInput = {
+export type ModelWebsiteVisitFilterInput = {
   id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  and?: Array< ModelTodoFilterInput | null > | null,
-  or?: Array< ModelTodoFilterInput | null > | null,
-  not?: ModelTodoFilterInput | null,
+  url?: ModelStringInput | null,
+  start?: ModelIntInput | null,
+  end?: ModelIntInput | null,
+  and?: Array< ModelWebsiteVisitFilterInput | null > | null,
+  or?: Array< ModelWebsiteVisitFilterInput | null > | null,
+  not?: ModelWebsiteVisitFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -106,24 +123,25 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type ModelTodoConnection = {
-  __typename: "ModelTodoConnection",
-  items?:  Array<Todo | null > | null,
+export type ModelWebsiteVisitConnection = {
+  __typename: "ModelWebsiteVisitConnection",
+  items?:  Array<WebsiteVisit | null > | null,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type CreateTodoMutationVariables = {
-  input: CreateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type CreateWebsiteVisitMutationVariables = {
+  input: CreateWebsiteVisitInput,
+  condition?: ModelWebsiteVisitConditionInput | null,
 };
 
-export type CreateTodoMutation = {
-  createTodo?:  {
-    __typename: "Todo",
+export type CreateWebsiteVisitMutation = {
+  createWebsiteVisit?:  {
+    __typename: "WebsiteVisit",
     id: string,
-    name: string,
-    description?: string | null,
+    url: string,
+    start: number,
+    end: number,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -132,17 +150,18 @@ export type CreateTodoMutation = {
   } | null,
 };
 
-export type UpdateTodoMutationVariables = {
-  input: UpdateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type UpdateWebsiteVisitMutationVariables = {
+  input: UpdateWebsiteVisitInput,
+  condition?: ModelWebsiteVisitConditionInput | null,
 };
 
-export type UpdateTodoMutation = {
-  updateTodo?:  {
-    __typename: "Todo",
+export type UpdateWebsiteVisitMutation = {
+  updateWebsiteVisit?:  {
+    __typename: "WebsiteVisit",
     id: string,
-    name: string,
-    description?: string | null,
+    url: string,
+    start: number,
+    end: number,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -151,17 +170,18 @@ export type UpdateTodoMutation = {
   } | null,
 };
 
-export type DeleteTodoMutationVariables = {
-  input: DeleteTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type DeleteWebsiteVisitMutationVariables = {
+  input: DeleteWebsiteVisitInput,
+  condition?: ModelWebsiteVisitConditionInput | null,
 };
 
-export type DeleteTodoMutation = {
-  deleteTodo?:  {
-    __typename: "Todo",
+export type DeleteWebsiteVisitMutation = {
+  deleteWebsiteVisit?:  {
+    __typename: "WebsiteVisit",
     id: string,
-    name: string,
-    description?: string | null,
+    url: string,
+    start: number,
+    end: number,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -170,21 +190,22 @@ export type DeleteTodoMutation = {
   } | null,
 };
 
-export type SyncTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
+export type SyncWebsiteVisitsQueryVariables = {
+  filter?: ModelWebsiteVisitFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
 };
 
-export type SyncTodosQuery = {
-  syncTodos?:  {
-    __typename: "ModelTodoConnection",
+export type SyncWebsiteVisitsQuery = {
+  syncWebsiteVisits?:  {
+    __typename: "ModelWebsiteVisitConnection",
     items?:  Array< {
-      __typename: "Todo",
+      __typename: "WebsiteVisit",
       id: string,
-      name: string,
-      description?: string | null,
+      url: string,
+      start: number,
+      end: number,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -196,16 +217,17 @@ export type SyncTodosQuery = {
   } | null,
 };
 
-export type GetTodoQueryVariables = {
+export type GetWebsiteVisitQueryVariables = {
   id: string,
 };
 
-export type GetTodoQuery = {
-  getTodo?:  {
-    __typename: "Todo",
+export type GetWebsiteVisitQuery = {
+  getWebsiteVisit?:  {
+    __typename: "WebsiteVisit",
     id: string,
-    name: string,
-    description?: string | null,
+    url: string,
+    start: number,
+    end: number,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -214,20 +236,21 @@ export type GetTodoQuery = {
   } | null,
 };
 
-export type ListTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
+export type ListWebsiteVisitsQueryVariables = {
+  filter?: ModelWebsiteVisitFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListTodosQuery = {
-  listTodos?:  {
-    __typename: "ModelTodoConnection",
+export type ListWebsiteVisitsQuery = {
+  listWebsiteVisits?:  {
+    __typename: "ModelWebsiteVisitConnection",
     items?:  Array< {
-      __typename: "Todo",
+      __typename: "WebsiteVisit",
       id: string,
-      name: string,
-      description?: string | null,
+      url: string,
+      start: number,
+      end: number,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -239,12 +262,13 @@ export type ListTodosQuery = {
   } | null,
 };
 
-export type OnCreateTodoSubscription = {
-  onCreateTodo?:  {
-    __typename: "Todo",
+export type OnCreateWebsiteVisitSubscription = {
+  onCreateWebsiteVisit?:  {
+    __typename: "WebsiteVisit",
     id: string,
-    name: string,
-    description?: string | null,
+    url: string,
+    start: number,
+    end: number,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -253,12 +277,13 @@ export type OnCreateTodoSubscription = {
   } | null,
 };
 
-export type OnUpdateTodoSubscription = {
-  onUpdateTodo?:  {
-    __typename: "Todo",
+export type OnUpdateWebsiteVisitSubscription = {
+  onUpdateWebsiteVisit?:  {
+    __typename: "WebsiteVisit",
     id: string,
-    name: string,
-    description?: string | null,
+    url: string,
+    start: number,
+    end: number,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -267,12 +292,13 @@ export type OnUpdateTodoSubscription = {
   } | null,
 };
 
-export type OnDeleteTodoSubscription = {
-  onDeleteTodo?:  {
-    __typename: "Todo",
+export type OnDeleteWebsiteVisitSubscription = {
+  onDeleteWebsiteVisit?:  {
+    __typename: "WebsiteVisit",
     id: string,
-    name: string,
-    description?: string | null,
+    url: string,
+    start: number,
+    end: number,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,

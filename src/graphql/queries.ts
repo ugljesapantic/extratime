@@ -2,14 +2,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const syncTodos = /* GraphQL */ `
-  query SyncTodos(
-    $filter: ModelTodoFilterInput
+export const syncWebsiteVisits = /* GraphQL */ `
+  query SyncWebsiteVisits(
+    $filter: ModelWebsiteVisitFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncTodos(
+    syncWebsiteVisits(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -17,8 +17,9 @@ export const syncTodos = /* GraphQL */ `
     ) {
       items {
         id
-        name
-        description
+        url
+        start
+        end
         _version
         _deleted
         _lastChangedAt
@@ -30,12 +31,13 @@ export const syncTodos = /* GraphQL */ `
     }
   }
 `;
-export const getTodo = /* GraphQL */ `
-  query GetTodo($id: ID!) {
-    getTodo(id: $id) {
+export const getWebsiteVisit = /* GraphQL */ `
+  query GetWebsiteVisit($id: ID!) {
+    getWebsiteVisit(id: $id) {
       id
-      name
-      description
+      url
+      start
+      end
       _version
       _deleted
       _lastChangedAt
@@ -44,17 +46,18 @@ export const getTodo = /* GraphQL */ `
     }
   }
 `;
-export const listTodos = /* GraphQL */ `
-  query ListTodos(
-    $filter: ModelTodoFilterInput
+export const listWebsiteVisits = /* GraphQL */ `
+  query ListWebsiteVisits(
+    $filter: ModelWebsiteVisitFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listWebsiteVisits(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        description
+        url
+        start
+        end
         _version
         _deleted
         _lastChangedAt
