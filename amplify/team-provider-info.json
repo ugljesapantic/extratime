@@ -10,6 +10,11 @@
       "StackName": "amplify-extratime-dev-141754",
       "StackId": "arn:aws:cloudformation:eu-central-1:008415254332:stack/amplify-extratime-dev-141754/7273e550-21e8-11ec-bf6e-06cbba75496e",
       "AmplifyAppId": "d6s521zxb25ey"
+    },
+    "categories": {
+      "auth": {
+        "extratime7fec7de3": {}
+      }
     }
   }
 }
