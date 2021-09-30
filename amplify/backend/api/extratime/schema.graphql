@@ -1,0 +1,6 @@
+type WebsiteVisit @model {
+  id: ID!
+  url: String!
+  start: Int!
+  end: Int!
+}

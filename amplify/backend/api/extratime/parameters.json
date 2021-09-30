@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "extratime",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authextratime7fec7de3",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
