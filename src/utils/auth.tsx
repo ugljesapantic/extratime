@@ -24,6 +24,7 @@ export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}
   const loadIt = useCallback(async () => {
     const session = supabase.auth.session()
     chrome.runtime?.sendMessage(extensionId, session) 
+    console.log(chrome.runtime, 'jebote')
     setAuth(session?.user);
   }, [])
 
@@ -32,6 +33,7 @@ export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}
     supabase.auth.onAuthStateChange((ev, session) => {
       const user = session?.user;
       chrome.runtime?.sendMessage(extensionId, session) 
+      console.log(chrome.runtime, 'jebote')
       setAuth(user);
     })
   }, [loadIt])
