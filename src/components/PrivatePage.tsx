@@ -1,7 +1,7 @@
-import Auth from '@aws-amplify/auth';
 import Head from 'next/head'
 import Link from 'next/link';
 import React, { useCallback } from 'react'
+import { supabase } from '../../config/supabase';
 import { Redirect, useAuth } from '../utils/auth';
 
 type Props = {
@@ -12,7 +12,7 @@ const PrivatePage: React.FC<Props> = ({children, title}) => {
 
   const auth = useAuth();
 
-  const logout = useCallback(() => Auth.signOut(), [])
+  const logout = useCallback(() => supabase.auth.signOut(), [])
 
   if (!auth) return <Redirect path="/" />
   

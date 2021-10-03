@@ -1,7 +1,6 @@
-import Auth, { CognitoUser } from "@aws-amplify/auth";
-import { Hub } from "@aws-amplify/core";
 import { NextRouter, useRouter } from "next/router"
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { supabase } from "../../config/supabase";
 
 const PASSWORD_KEY = 'auth_password';
 
@@ -15,42 +14,32 @@ export const moveToCode = (router: NextRouter, email: string, password: string) 
 export const loginWithSessionStorage = async (email: string) => {
   const password = sessionStorage.getItem(PASSWORD_KEY);
   if (!password) throw new Error('No password!');
-  return Auth.signIn(email, password);
+  // return Auth.signIn(email, password);
 }
 
-const Context = createContext<CognitoUser | undefined>(undefined);
+// TODO
+const Context = createContext<any | undefined>(undefined);
 
 export const useAuth = () => useContext(Context);
 
 export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}) => {
   // When null, its loading
-  const [auth, setAuth] = useState<CognitoUser | undefined | null>(null);
+  const [auth, setAuth] = useState<any | undefined | null>(null);
+
+  console.log(auth, 'idemoooo')
 
   const loadIt = useCallback(async () => {
-    try {
-      const user = await Auth.currentAuthenticatedUser();
-      chrome.runtime.sendMessage(extensionId, user) 
-      setAuth(user);
-    } catch (e) {
-      setAuth(undefined);
-      chrome.runtime.sendMessage(extensionId, undefined) 
-    }
+    const session = supabase.auth.session()
+    // chrome.runtime.sendMessage(extensionId, session?.user) 
+    setAuth(session?.user);
   }, [])
 
   useEffect(() => { 
     loadIt();
-    Hub.listen('auth', (data) => {
-      switch(data.payload.event) {
-        case 'signIn':
-          // Send data to extension
-          chrome.runtime.sendMessage(extensionId, data.payload.data) 
-          setAuth(data.payload.data);
-          break;
-        case 'signOut':
-          setAuth(undefined);
-          chrome.runtime.sendMessage(extensionId, undefined) 
-          break;
-      }
+    supabase.auth.onAuthStateChange((ev, session) => {
+      const user = session?.user;
+      // chrome.runtime.sendMessage(extensionId, user) 
+      setAuth(user);
     })
   }, [loadIt])
 
