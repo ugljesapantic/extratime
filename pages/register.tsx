@@ -6,7 +6,6 @@ import TextInput from '../ds/TextInput'
 import PublicPage from '../src/components/PublicPage'
 import Form from '../src/components/Form'
 import { useRouter } from 'next/router'
-import { moveToCode } from '../src/utils/auth'
 import { supabase } from '../config/supabase'
 
 export default function Register() {
@@ -15,7 +14,7 @@ export default function Register() {
   const onSignUp = useCallback(async ({email, password}, _ , methods: UseFormReturn<FieldValues, object>) => {
     try {
       supabase.auth.signUp({email, password})
-      moveToCode(r, email, password)
+      // moveToCode(r, email, password)
     } catch (e: any) {
       if (['UsernameExistsException'].includes(e.code)) methods.setError('email', {message: e.message});
       else if (['InvalidPasswordException'].includes(e.code)) methods.setError('password', {message: e.message});

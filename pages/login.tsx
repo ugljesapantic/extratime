@@ -6,7 +6,6 @@ import TextInput from '../ds/TextInput'
 import PublicPage from '../src/components/PublicPage'
 import Form from '../src/components/Form'
 import { useRouter } from 'next/router'
-import { moveToCode } from '../src/utils/auth'
 import { supabase } from '../config/supabase'
 
 export default function Login() {
@@ -17,7 +16,7 @@ export default function Login() {
       await supabase.auth.signIn({email, password})
     } catch (e: any) {
       // TODO improve
-      if (e.code === 'UserNotConfirmedException') moveToCode(r, email, password);
+      // if (e.code === 'UserNotConfirmedException') moveToCode(r, email, password);
     }
   }, [])
 
