@@ -2,6 +2,7 @@ import { DataStore } from "@aws-amplify/datastore";
 import { useCallback } from "react";
 import PrivatePage from "../src/components/PrivatePage";
 import { WebsiteVisit } from "../src/models";
+import { API } from "aws-amplify";
 
 export default function Dashboard() {
 
