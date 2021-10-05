@@ -32,8 +32,7 @@ export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}
     loadIt();
     supabase.auth.onAuthStateChange((ev, session) => {
       const user = session?.user;
-      chrome.runtime?.sendMessage(extensionId, session) 
-      console.log(chrome.runtime, 'jebote')
+      chrome.runtime?.sendMessage(extensionId, JSON.parse(localStorage.getItem('supabase.auth.token') || '')) 
       setAuth(user);
     })
   }, [loadIt])
