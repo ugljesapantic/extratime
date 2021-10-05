@@ -1,4 +1,5 @@
 import { supabase } from "../../config/supabase"
+import Cors from 'cors';
 
 function initMiddleware(middleware) {
   return (req, res) =>
