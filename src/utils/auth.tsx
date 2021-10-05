@@ -6,12 +6,6 @@ const PASSWORD_KEY = 'auth_password';
 
 const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
 
-export const loginWithSessionStorage = async (email: string) => {
-  const password = sessionStorage.getItem(PASSWORD_KEY);
-  if (!password) throw new Error('No password!');
-  // return Auth.signIn(email, password);
-}
-
 // TODO
 const Context = createContext<any | undefined>(undefined);
 
@@ -24,7 +18,6 @@ export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}
   const loadIt = useCallback(async () => {
     const session = supabase.auth.session()
     chrome.runtime?.sendMessage(extensionId, session) 
-    console.log(chrome.runtime, 'jebote')
     setAuth(session?.user);
   }, [])
 
