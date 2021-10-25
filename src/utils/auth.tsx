@@ -2,7 +2,7 @@ import { NextRouter, useRouter } from "next/router"
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { supabase } from "../../config/supabase";
 
-const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
+const extensionId = 'dejlpmckdjnjgpnllaeeolbfgjienoce';
 
 // TODO
 const Context = createContext<any | undefined>(undefined);
