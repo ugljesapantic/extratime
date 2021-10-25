@@ -2,8 +2,6 @@ import { NextRouter, useRouter } from "next/router"
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { supabase } from "../../config/supabase";
 
-const PASSWORD_KEY = 'auth_password';
-
 const extensionId = 'cnllcofkmmpfogkbengdmflgebmmnmgn';
 
 // TODO
@@ -11,13 +9,16 @@ const Context = createContext<any | undefined>(undefined);
 
 export const useAuth = () => useContext(Context);
 
+export const sendIt = (body: {email: string; password: string}) => {
+  chrome.runtime?.sendMessage(extensionId, body);
+}
+
 export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}) => {
   // When null, its loading
   const [auth, setAuth] = useState<any | undefined | null>(null);
 
   const loadIt = useCallback(async () => {
     const session = supabase.auth.session()
-    chrome.runtime?.sendMessage(extensionId, session) 
     setAuth(session?.user);
   }, [])
 
@@ -25,7 +26,6 @@ export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}
     loadIt();
     supabase.auth.onAuthStateChange((ev, session) => {
       const user = session?.user;
-      chrome.runtime?.sendMessage(extensionId, JSON.parse(localStorage.getItem('supabase.auth.token') || '')) 
       setAuth(user);
     })
   }, [loadIt])

@@ -7,17 +7,19 @@ import PublicPage from '../src/components/PublicPage'
 import Form from '../src/components/Form'
 import { useRouter } from 'next/router'
 import { supabase } from '../config/supabase'
+import { sendIt } from '../src/utils/auth'
 
 export default function Register() {
   const r = useRouter();
 
   const onSignUp = useCallback(async ({email, password}, _ , methods: UseFormReturn<FieldValues, object>) => {
     try {
-      supabase.auth.signUp({email, password})
-      // moveToCode(r, email, password)
+      await supabase.auth.signUp({email, password})
+      sendIt({email, password})
     } catch (e: any) {
-      if (['UsernameExistsException'].includes(e.code)) methods.setError('email', {message: e.message});
-      else if (['InvalidPasswordException'].includes(e.code)) methods.setError('password', {message: e.message});
+      // TODO add supabase codes
+      // if (['UsernameExistsException'].includes(e.code)) methods.setError('email', {message: e.message});
+      // else if (['InvalidPasswordException'].includes(e.code)) methods.setError('password', {message: e.message});
     }
   }, [])
 
