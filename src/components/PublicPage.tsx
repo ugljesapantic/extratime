@@ -14,14 +14,14 @@ const PublicPage: React.FC<Props> = ({children, title}) => {
   if (auth) return <Redirect path="/dashboard" />
   
   return (
-    <div className="h-screen w-screen bg-gradient-to-b from-blue-900 via-indigo-900 to-purple-900 text-gray-300">
+    <div className="h-screen w-screen bg-gray-800 text-gray-300">
       <Head>
         <title>{title}</title>
         <meta name="description" content="Extra time app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mx-auto min-h-full flex flex-col">
-        <header className="flex h-10 items-center space-x-3">
+        <header className="flex h-20 items-center space-x-3">
           <span className="text-lg font-medium mr-auto"><Link href="/">ExtraTime</Link></span>
           <span className="text-md hover:underline"><Link href="/login">Login</Link></span>
           <span className="text-md hover:underline"><Link href="/register">Register</Link></span>

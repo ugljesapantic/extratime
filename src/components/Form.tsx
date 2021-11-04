@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form'
 import clsx from 'clsx'
-import Button from '../../ds/Button';
+import Button from '../../atoms/Button';
 
 export default function Form({onSubmit, buttonLabel, children}: any) {
   const methods = useForm();

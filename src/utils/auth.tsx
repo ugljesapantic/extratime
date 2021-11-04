@@ -10,7 +10,6 @@ const Context = createContext<any | undefined>(undefined);
 export const useAuth = () => useContext(Context);
 
 export const sendIt = (body: {email: string; password: string}) => {
-  console.log('sendit', body)
   chrome.runtime?.sendMessage(extensionId, body);
 }
 

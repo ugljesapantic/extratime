@@ -30,7 +30,7 @@ const PrivatePage: React.FC<Props> = ({children, title}) => {
             <span onClick={logout}>Logout</span>
           </header>
         </div>
-        <main className="container mx-auto flex flex-col flex-1 -mt-4">
+        <main className="container mx-auto flex flex-col flex-1 -mt-4 flex-1">
           {children}
         </main>
         <footer className="m-t-auto h-10 text-center text-sm">
