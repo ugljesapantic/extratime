@@ -1,11 +1,7 @@
 import clsx from 'clsx';
 import React, { InputHTMLAttributes, useCallback, useEffect, useMemo, useState } from 'react'
 
-import day from '../lib/day';
-import duration from 'dayjs/plugin/duration';
 import PrivatePage from '../src/components/PrivatePage';
-import { supabase } from '../config/supabase';
-import Input from '../atoms/Input';
 import Button from '../atoms/Button';
 import { sendIt } from '../src/utils/extension';
 import { usePomodoro } from '../lib/use-pomodoro';
@@ -25,16 +21,16 @@ const Pomodoro: React.FC = () => {
   }), [])
 
   const pause = useCallback(() => sendIt({
-    type: 'pomodoro', data: { action: 'pause' }
+    type: 'pomodoro', data: { action: 'start' }
   }), [])
   
   return <PrivatePage title="Pomodoro">
-    <div className="flex self-center justify-center">
+    <div className="flex self-center justify-center space-x-4">
       {!hasActive && <Button onClick={start} >Start</Button>}
       {hasActive && <Button onClick={pause} >Pause</Button>}
       {hasActive && <Button onClick={stop} >Stop</Button>}
     </div>
-    {hasActive && <div className="text-9xl">{timeLeft}</div>}
+    {hasActive && <div className="self-center my-auto text-9xl">{timeLeft}</div>}
   </PrivatePage>
 };
 
