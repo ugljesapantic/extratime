@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-const renderCustomAxisTick = ({ x, y, payload }) => {
+const renderCustomAxisTick = ({ x, y, payload }: any) => {
 
   return (
     <svg x={x - 8} y={y + 4} width="16" height="16">
