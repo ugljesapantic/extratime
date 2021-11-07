@@ -17,20 +17,18 @@ const renderCustomAxisTick = ({ x, y, payload }) => {
 
 const OriginDistribution = ({data}: Props) => {
   return (
-    <ResponsiveContainer  width="100%" height={600}>
+    <div className="flex-1 h-0 overflow-auto">
+      <ResponsiveContainer minWidth={640} height="100%" width="100%" >
       <BarChart
-        
-        width={500}
-        height={300}
         data={data}
       >
         {/* <CartesianGrid strokeDasharray="3 3" /> */}
-        <XAxis interval={0} tick={renderCustomAxisTick}   dataKey="url" />
-        <YAxis />
-        <Tooltip />
-        <Bar isAnimationActive={false} dataKey="minutes" fill="#8884d8" />
+        <XAxis height={60} tickLine={false} interval={0} tick={renderCustomAxisTick}   dataKey="url" />
+        <YAxis width={30} tickLine={false} />
+        <Bar barSize={4}  dataKey="minutes" fill="#D1D5DB" />
       </BarChart>
     </ResponsiveContainer>
+    </div>
   )
 }
 
