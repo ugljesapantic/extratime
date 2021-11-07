@@ -17,8 +17,7 @@ export const usePomodoro = () => {
 
   useEffect(() => {
     const handler =  (message: any) => {
-      console.log(message, 'pray', message.data.type === 'pomdoro', message.isTrusted)
-      if (message.data.type === 'pomdoro' && message.isTrusted) {
+      if (message.data.type === 'pomodoro' && message.isTrusted) {
         setLeft(message.data.data.remaining)
       }
     }
