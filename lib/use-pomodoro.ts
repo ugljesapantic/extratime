@@ -13,10 +13,11 @@ import { sendIt } from '../src/utils/extension';
 
 export const usePomodoro = () => {
   const [left, setLeft] = useState<number>();
+  
 
   useEffect(() => {
     const handler =  (message: any) => {
-      console.log(message, 'pray')
+      console.log(message, 'pray', message.data.type === 'pomdoro', message.isTrusted)
       if (message.data.type === 'pomdoro' && message.isTrusted) {
         setLeft(message.data.data.remaining)
       }
@@ -32,6 +33,8 @@ export const usePomodoro = () => {
     if (!Number.isInteger(left)) return null;
     return day.duration(left!, 'seconds').format('mm:ss')
   }, [left])
+
+  console.log(left, {timeLeft, hasActive: timeLeft !== null})
 
   return {timeLeft, hasActive: timeLeft !== null}
 }
