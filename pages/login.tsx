@@ -7,7 +7,7 @@ import PublicPage from '../src/components/PublicPage'
 import Form from '../src/components/Form'
 import { useRouter } from 'next/router'
 import { supabase } from '../config/supabase'
-import { sendIt } from '../src/utils/auth'
+import { sendIt } from '../src/utils/extension'
 
 export default function Login() {
   const r = useRouter();
@@ -15,7 +15,7 @@ export default function Login() {
   const onSignIn = useCallback(async ({email, password}, _ , methods: UseFormReturn<FieldValues, object>) => {
     try {
       await supabase.auth.signIn({email, password})
-      sendIt({email, password})
+      sendIt({type: 'auth', data: {email, password}})
     } catch (e: any) {
       // TODO improve
       // if (e.code === 'UserNotConfirmedException') moveToCode(r, email, password);

@@ -9,10 +9,6 @@ const Context = createContext<any | undefined>(undefined);
 
 export const useAuth = () => useContext(Context);
 
-export const sendIt = (body: {email: string; password: string}) => {
-  chrome.runtime?.sendMessage(extensionId, body);
-}
-
 export const AuthContext: React.FC<{isPublic?: boolean}> = ({children, isPublic}) => {
   // When null, its loading
   const [auth, setAuth] = useState<any | undefined | null>(null);
