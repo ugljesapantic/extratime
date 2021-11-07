@@ -18,10 +18,10 @@ const Pomodoro: React.FC = () => {
     const doer = (message: any) => {
       console.log(message, 'lalala')
     }
-    chrome.runtime.onMessageExternal?.addListener(doer)
+    chrome.runtime.onMessage?.addListener(doer)
 
     return () => {
-      chrome.runtime.onMessageExternal?.removeListener(doer)
+      chrome.runtime.onMessage?.removeListener(doer)
     }
   }, [])
   
