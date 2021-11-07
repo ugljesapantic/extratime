@@ -16,20 +16,13 @@ const renderCustomAxisTick = ({ x, y, payload }) => {
 };
 
 const OriginDistribution = ({data}: Props) => {
-  console.log(data, 'ahgabrg')
   return (
-    <ResponsiveContainer  width="99%" height={500}>
+    <ResponsiveContainer  width="100%" height={600}>
       <BarChart
         
         width={500}
         height={300}
         data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
       >
         {/* <CartesianGrid strokeDasharray="3 3" /> */}
         <XAxis interval={0} tick={renderCustomAxisTick}   dataKey="url" />

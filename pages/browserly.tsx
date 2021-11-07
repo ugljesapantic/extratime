@@ -6,17 +6,23 @@ import duration from 'dayjs/plugin/duration';
 import PrivatePage from '../src/components/PrivatePage';
 import { supabase } from '../config/supabase';
 import OriginDistribution from '../components/browserly/OriginDistribution';
+import Input from '../atoms/Input';
 
 dayjs.extend(duration);
 
+const DATE_FORMAT = 'YYYY-MM-DD';
+
 const Browserly: React.FC = () => {
   const [originData, setOriginData] = useState<Map<string, number>>();
+  const [date, setDate] = useState<number>(+dayjs().startOf('day'));
 
   const fetchData = useCallback(async () => {
     const { data, error } = await supabase
       .from('WebsiteVisit')
       .select()
-      .gte('start', +dayjs().startOf('day').toDate())
+      .lte('end', date + + 8.64e+7)
+      .gte('start', date)
+      // .range(date, date + 8.64e+7)
 
 
     const map = new Map();
@@ -45,7 +51,7 @@ const Browserly: React.FC = () => {
       transformed.push([{url: key, minutes: value / 60*1000}])
     }
     setOriginData(final)
-  }, [])
+  }, [date])
 
   useEffect(() => {
     fetchData();
@@ -63,8 +69,14 @@ const Browserly: React.FC = () => {
     const timeSpentRest = minor.reduce((p, c) => p + c.minutes, 0)
     return [...transformed, {url: 'rest', minutes: Number(timeSpentRest.toFixed(2))}];
   }, [originData])
+
+  const onDateChange = useCallback((e) => {
+    const date =  dayjs(e.target.value, DATE_FORMAT);
+    setDate(date.valueOf())
+  }, [])
   
   return <PrivatePage title="Browsery">
+    <Input  type="date" value={dayjs(date).format(DATE_FORMAT)} onChange={onDateChange} />
     {!!originDistributionData.length && <OriginDistribution data={originDistributionData} />}
   </PrivatePage>
 };
