@@ -26,7 +26,7 @@ const Pomodoro: React.FC = () => {
   }, [])
   
   return <PrivatePage title="Pomodoro">
-    <Button onClick={() => sendIt({type: 'pomodoro', data: { duration: 25*60 }})} />
+    <Button onClick={() => sendIt({type: 'pomodoro', data: { duration: 25*60, action: 'start' }})} />
   </PrivatePage>
 };
 
