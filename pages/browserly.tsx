@@ -76,7 +76,7 @@ const Browserly: React.FC = () => {
   }, [])
   
   return <PrivatePage title="Browsery">
-    <Input  type="date" value={dayjs(date).format(DATE_FORMAT)} onChange={onDateChange} />
+    <Input type="date" value={dayjs(date).format(DATE_FORMAT)} onChange={onDateChange} className="relative ml-auto" />
     {!!originDistributionData.length && <OriginDistribution data={originDistributionData} />}
   </PrivatePage>
 };

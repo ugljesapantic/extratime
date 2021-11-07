@@ -11,6 +11,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(({error, className,...re
     // TODO investigate why ring hover is not working
     !error && `focus:ring-green-500 hover:ring-green-800`,
     error && `ring-red-500 focus:ring-red-500`,
+    className
   )} {...rest} />
   
 });

@@ -9,8 +9,6 @@ const TextInput: React.FC<Props> = ({label, className, name, ...rest}) => {
   const {formState: {errors}, register} = useFormContext();
 
   const error = errors?.[name];
-
-  console.log(errors, 'iakjndgfad')
   
   return <label className={clsx(
     "flex flex-col text-sm font-medium",
