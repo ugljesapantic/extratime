@@ -1,32 +1,40 @@
 import clsx from 'clsx';
 import React, { InputHTMLAttributes, useCallback, useEffect, useMemo, useState } from 'react'
 
-import dayjs from 'dayjs'
+import day from '../lib/day';
 import duration from 'dayjs/plugin/duration';
 import PrivatePage from '../src/components/PrivatePage';
 import { supabase } from '../config/supabase';
 import Input from '../atoms/Input';
 import Button from '../atoms/Button';
 import { sendIt } from '../src/utils/extension';
+import { usePomodoro } from '../lib/use-pomodoro';
+
 
 
 const Pomodoro: React.FC = () => {
-  // const [duration, setDuration]  = useState();
-  // const [left, setLeft] = useState();
+  const {timeLeft, hasActive} = usePomodoro();
 
-  useEffect(() => {
-    const doer = (message: any) => {
-      console.log(message, 'lalala')
-    }
-    chrome.runtime.onMessage?.addListener(doer)
+  // TODO 25 configurable
+  const start = useCallback(() => sendIt({
+    type: 'pomodoro', data: { duration: 25*60, action: 'start' }
+  }), [])
 
-    return () => {
-      chrome.runtime.onMessage?.removeListener(doer)
-    }
-  }, [])
+  const stop = useCallback(() => sendIt({
+    type: 'pomodoro', data: { action: 'stop' }
+  }), [])
+
+  const pause = useCallback(() => sendIt({
+    type: 'pomodoro', data: { action: 'pause' }
+  }), [])
   
   return <PrivatePage title="Pomodoro">
-    <Button onClick={() => sendIt({type: 'pomodoro', data: { duration: 25*60, action: 'start' }})} />
+    <div className="flex self-center justify-center">
+      {!hasActive && <Button onClick={start} >Start</Button>}
+      {hasActive && <Button onClick={pause} >Pause</Button>}
+      {hasActive && <Button onClick={stop} >Stop</Button>}
+    </div>
+    {hasActive && <div className="text-9xl">{timeLeft}</div>}
   </PrivatePage>
 };
 

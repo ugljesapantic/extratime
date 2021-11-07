@@ -1,20 +1,18 @@
 import clsx from 'clsx';
 import React, { InputHTMLAttributes, useCallback, useEffect, useMemo, useState } from 'react'
 
-import dayjs from 'dayjs'
-import duration from 'dayjs/plugin/duration';
 import PrivatePage from '../src/components/PrivatePage';
 import { supabase } from '../config/supabase';
 import OriginDistribution from '../components/browserly/OriginDistribution';
 import Input from '../atoms/Input';
+import day from '../lib/day';
 
-dayjs.extend(duration);
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 
 const Browserly: React.FC = () => {
   const [originData, setOriginData] = useState<Map<string, number>>();
-  const [date, setDate] = useState<number>(+dayjs().startOf('day'));
+  const [date, setDate] = useState<number>(+day().startOf('day'));
 
   const fetchData = useCallback(async () => {
     const { data, error } = await supabase
@@ -71,12 +69,12 @@ const Browserly: React.FC = () => {
   }, [originData])
 
   const onDateChange = useCallback((e) => {
-    const date =  dayjs(e.target.value, DATE_FORMAT);
+    const date =  day(e.target.value, DATE_FORMAT);
     setDate(date.valueOf())
   }, [])
   
   return <PrivatePage title="Browsery">
-    <Input type="date" value={dayjs(date).format(DATE_FORMAT)} onChange={onDateChange} className="relative ml-auto" />
+    <Input type="date" value={day(date).format(DATE_FORMAT)} onChange={onDateChange} className="relative ml-auto" />
     {!!originDistributionData.length && <OriginDistribution data={originDistributionData} />}
   </PrivatePage>
 };
