@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React, { ButtonHTMLAttributes } from 'react'
 
 interface Props {
-  isLoading: boolean
+  isLoading?: boolean
 }
 
 const Button: React.FC<Props & ButtonHTMLAttributes<HTMLButtonElement>> = ({children, isLoading, className = '', ...elProps}) => {
