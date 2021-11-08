@@ -23,5 +23,7 @@ export const usePomodoro = () => {
     return day.duration(data?.left, 'seconds').format('mm:ss')
   }, [data?.left])
 
+  console.log(timeLeft, data?.paused)
+
   return {timeLeft, hasActive: timeLeft !== null, paused: data?.paused}
 }
