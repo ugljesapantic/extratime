@@ -11,7 +11,7 @@ const Pomodoro: React.FC = () => {
 
   // TODO 25 configurable
   const start = useCallback(() => sendIt({
-    type: 'pomodoro', data: { duration: 9, action: 'start' }
+    type: 'pomodoro', data: { duration: 5, action: 'start' }
   }), [])
 
   const stop = useCallback(() => sendIt({
