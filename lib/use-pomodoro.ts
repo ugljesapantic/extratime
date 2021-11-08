@@ -15,9 +15,7 @@ export const usePomodoro = () => {
     }
     window.addEventListener('message', handler)
 
-    return () => {
-      window.removeEventListener('message', handler)
-    }
+    return () => window.removeEventListener('message', handler)
   }, [])
 
   const timeLeft = useMemo(() => {

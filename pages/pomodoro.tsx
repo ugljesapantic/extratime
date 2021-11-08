@@ -6,8 +6,6 @@ import Button from '../atoms/Button';
 import { sendIt } from '../src/utils/extension';
 import { usePomodoro } from '../lib/use-pomodoro';
 
-
-
 const Pomodoro: React.FC = () => {
   const {timeLeft, hasActive, paused} = usePomodoro();
 
@@ -25,14 +23,14 @@ const Pomodoro: React.FC = () => {
   }), [])
 
   const resume = useCallback(() => sendIt({
-    type: 'pomodoro', data: { action: 'resume' }
+    type: 'pomodoro', data: { action: 'start' }
   }), [])
   
   return <PrivatePage title="Pomodoro">
     <div className="flex self-center justify-center space-x-4">
       {!hasActive && <Button onClick={start} >Start</Button>}
       {hasActive && !paused && <Button onClick={pause} >Pause</Button>}
-      {hasActive && paused && <Button onClick={pause} >Resume</Button>}
+      {hasActive && paused && <Button onClick={resume} >Resume</Button>}
       {hasActive && <Button onClick={stop} >Stop</Button>}
     </div>
     {hasActive && <div className="self-center my-auto text-9xl">{timeLeft}</div>}
