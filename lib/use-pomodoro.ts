@@ -9,6 +9,7 @@ export const usePomodoro = () => {
   useEffect(() => {
     const handler =  (message: any) => {
       if (message.data.type === 'pomodoro' && message.isTrusted) {
+        console.log(message.data, 'ggggggggg')
         setData(message.data.data)
       }
     }
