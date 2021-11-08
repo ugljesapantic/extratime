@@ -9,7 +9,7 @@ import { usePomodoro } from '../lib/use-pomodoro';
 
 
 const Pomodoro: React.FC = () => {
-  const {timeLeft, hasActive} = usePomodoro();
+  const {timeLeft, hasActive, paused} = usePomodoro();
 
   // TODO 25 configurable
   const start = useCallback(() => sendIt({
@@ -21,13 +21,18 @@ const Pomodoro: React.FC = () => {
   }), [])
 
   const pause = useCallback(() => sendIt({
-    type: 'pomodoro', data: { action: 'start' }
+    type: 'pomodoro', data: { action: 'pause' }
+  }), [])
+
+  const resume = useCallback(() => sendIt({
+    type: 'pomodoro', data: { action: 'resume' }
   }), [])
   
   return <PrivatePage title="Pomodoro">
     <div className="flex self-center justify-center space-x-4">
       {!hasActive && <Button onClick={start} >Start</Button>}
-      {hasActive && <Button onClick={pause} >Pause</Button>}
+      {hasActive && !paused && <Button onClick={pause} >Pause</Button>}
+      {hasActive && paused && <Button onClick={pause} >Resume</Button>}
       {hasActive && <Button onClick={stop} >Stop</Button>}
     </div>
     {hasActive && <div className="self-center my-auto text-9xl">{timeLeft}</div>}

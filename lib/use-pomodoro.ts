@@ -4,11 +4,13 @@ import day from '../lib/day';
 
 export const usePomodoro = () => {
   const [left, setLeft] = useState<number>();
+  const [paused, setPaused] = useState<boolean>();
   
   useEffect(() => {
     const handler =  (message: any) => {
       if (message.data.type === 'pomodoro' && message.isTrusted) {
         setLeft(message.data.data.remaining)
+        setPaused(message.data.data.paused)
       }
     }
     window.addEventListener('message', handler)
@@ -25,5 +27,5 @@ export const usePomodoro = () => {
 
   console.log(left, {timeLeft, hasActive: timeLeft !== null})
 
-  return {timeLeft, hasActive: timeLeft !== null}
+  return {timeLeft, hasActive: timeLeft !== null, paused}
 }
