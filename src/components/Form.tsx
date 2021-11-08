@@ -13,7 +13,7 @@ export default function Form({onSubmit, buttonLabel, children}: any) {
   return (
     <FormProvider {...methods} >
       <form className={clsx(
-        'flex flex-col',
+        'flex flex-col p-8 bg-gray-900 rounded-lg shadow-lg m-4',
         'sm:m-auto sm:w-full sm:max-w-md'
       )} onSubmit={onSubmitHelper}>
         {children}

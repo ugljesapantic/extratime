@@ -4,6 +4,7 @@ import Widget from '../../atoms/Widget';
 import { supabase } from '../../config/supabase';
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration';
+import Spinner from '../../atoms/Spinner';
 
 dayjs.extend(duration);
 
@@ -28,6 +29,7 @@ const BrowserlyWidget: React.FC = () => {
   return <Widget title="Browserly" url="/browserly" >
     {/* TODO add loading */}
     {duration && <div className="text-2xl">{`Today: ${duration}`}</div>}
+    {!duration && <Spinner />}
   </Widget>
 };
 

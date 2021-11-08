@@ -3,14 +3,13 @@ import { useEffect, useMemo, useState } from 'react'
 import day from '../lib/day';
 
 export const usePomodoro = () => {
-  const [left, setLeft] = useState<number>();
-  const [paused, setPaused] = useState<boolean>();
+  const [data, setData] = useState<{left: number; paused: boolean}>() 
+
   
   useEffect(() => {
     const handler =  (message: any) => {
       if (message.data.type === 'pomodoro' && message.isTrusted) {
-        setLeft(message.data.data.remaining)
-        setPaused(message.data.data.paused)
+        setData(message.data.data)
       }
     }
     window.addEventListener('message', handler)
@@ -19,11 +18,9 @@ export const usePomodoro = () => {
   }, [])
 
   const timeLeft = useMemo(() => {
-    if (!left) return null;
-    return day.duration(left!, 'seconds').format('mm:ss')
-  }, [left])
+    if (!data?.left) return null;
+    return day.duration(data?.left, 'seconds').format('mm:ss')
+  }, [data?.left])
 
-  console.log(left, {timeLeft, hasActive: timeLeft !== null})
-
-  return {timeLeft, hasActive: timeLeft !== null, paused}
+  return {timeLeft, hasActive: timeLeft !== null, paused: data?.paused}
 }
