@@ -21,7 +21,7 @@ export const usePomodoro = () => {
   const timeLeft = useMemo(() => {
     if (!data?.left) return null;
     return day.duration(data?.left, 'seconds').format('mm:ss')
-  }, [data?.left])
+  }, [data])
 
   console.log(timeLeft, data?.paused)
 
